@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  acailegal-api:
+    image: acailegaldesafiocnab-api
+    build:
+      context: .
+    ports:
+      - "5000:80"
+    networks:
+      - desafiocnab-net
+    depends_on:
+      - "desafiocnab-sqlserver"    
+
+  acailegal-sqlserver:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      SA_PASSWORD: "SQLServer@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "5433:1433"
+    networks:
+      - desafiocnab-net
+
+networks: 
+    desafiocnab-net:
+      driver: bridge
