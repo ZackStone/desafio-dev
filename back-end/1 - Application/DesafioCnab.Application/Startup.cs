@@ -30,6 +30,7 @@ namespace DesafioCnab.Application
                 opts.UseSqlServer(Configuration["ConnectionString:DesafioCnabDB"]);
             });
 
+            services.AddTransient<IFileService, FileService>();
             services.AddTransient<IService<Tamanho>, BaseService<Tamanho>>();
             services.AddTransient<IService<Sabor>, BaseService<Sabor>>();
             services.AddTransient<IService<Adicional>, BaseService<Adicional>>();
@@ -54,6 +55,8 @@ namespace DesafioCnab.Application
                     opts.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                     opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 });
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +65,8 @@ namespace DesafioCnab.Application
             if (env.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
