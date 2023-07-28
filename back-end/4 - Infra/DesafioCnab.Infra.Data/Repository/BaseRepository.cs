@@ -19,7 +19,7 @@ namespace DesafioCnab.Infra.Data.Repository
 
         public virtual Task<List<TEntity>> GetAll() => _dbContext.Set<TEntity>().ToListAsync();
 
-        public virtual Task<TEntity> Get(Guid id) => _dbContext.Set<TEntity>().FindAsync(id);
+        public virtual Task<TEntity> Get(Guid id) => _dbContext.Set<TEntity>().FindAsync(id).AsTask();
 
         public async Task<TEntity> Insert(TEntity entity)
         {

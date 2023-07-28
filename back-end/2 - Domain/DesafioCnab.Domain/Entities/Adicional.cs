@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,7 +19,7 @@ namespace DesafioCnab.Domain.Entities
 
         public int? TempoDePreparo { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public ICollection<PedidoAdicional> Pedidos { get; set; }
     }
 }
