@@ -1,4 +1,4 @@
---/*
+/*
 DROP TABLE Transacao;
 DROP TABLE TipoTransacao;
 DROP TABLE NaturezaTransacao;
