@@ -30,16 +30,10 @@ namespace DesafioCnab.Application
                 opts.UseSqlServer(Configuration["ConnectionString:DesafioCnabDB"]);
             });
 
-            services.AddTransient<IFileService, FileService>();
-            services.AddTransient<IService<Tamanho>, BaseService<Tamanho>>();
-            services.AddTransient<IService<Sabor>, BaseService<Sabor>>();
-            services.AddTransient<IService<Adicional>, BaseService<Adicional>>();
-            services.AddTransient<IPedidosService, PedidosService>();
+            services.AddTransient<ICnabFileService, CnabFileService>();
+            services.AddTransient<IService<Transacao>, BaseService<Transacao>>();
 
-            services.AddTransient<IRepository<Tamanho>, BaseRepository<Tamanho>>();
-            services.AddTransient<IRepository<Sabor>, BaseRepository<Sabor>>();
-            services.AddTransient<IRepository<Adicional>, BaseRepository<Adicional>>();
-            services.AddTransient<IPedidosRepository, PedidosRepository>();
+            services.AddTransient<IRepository<Transacao>, BaseRepository<Transacao>>();
 
             services.AddCors(c =>
             {

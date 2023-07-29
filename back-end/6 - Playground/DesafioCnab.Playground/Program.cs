@@ -14,7 +14,7 @@ var host = CreateHostBuilder(args).Build();
 Application app = host.Services.GetRequiredService<Application>();
 
 
-var fileService = host.Services.GetRequiredService<IFileService>();
+var fileService = host.Services.GetRequiredService<ICnabFileService>();
 
 var stream = File.OpenRead("C:\\Users\\Zack\\Repository\\desafio-dev\\CNAB.txt");
 
@@ -25,7 +25,7 @@ static IHostBuilder CreateHostBuilder(string[] args)
 return Host.CreateDefaultBuilder(args)
     .ConfigureServices(
         (_, services) => services
-            .AddTransient<IFileService, FileService>()
+            .AddTransient<ICnabFileService, CnabFileService>()
             .AddSingleton<Application, Application>()
             .AddSingleton<IAppConfig, AppConfig>());
 }
@@ -46,7 +46,7 @@ class Application
     private readonly IAppConfig config;
     public Application(IAppConfig config, ILogger<Application> logger)
     {
-        this.config = config;
+        config = config;
         logger.Log(LogLevel.Information, "Application constructed");
     }
 }

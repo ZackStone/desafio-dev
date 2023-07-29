@@ -44,14 +44,14 @@ namespace DesafioCnab.Application.Controllers
             {
                 return BadRequest();
             }
-            await _service.Put(entity);
+            await _service.Update(entity);
             return NoContent();
         }
 
         [HttpPost]
         public async Task<ActionResult<TEntity>> Post(TEntity entity)
         {
-            await _service.Post(entity);
+            await _service.Insert(entity);
             return CreatedAtAction("Get", new { id = entity.Id }, entity);
         }
 

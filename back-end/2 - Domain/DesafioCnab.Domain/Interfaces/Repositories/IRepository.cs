@@ -11,9 +11,11 @@ namespace DesafioCnab.Domain.Interfaces.Repositories
 
         Task<List<T>> GetAll();
 
-        Task<T> Insert(T obj);
+        Task<T> Insert(T entity);
 
-        Task<T> Update(T obj);
+        Task<T[]> InsertRange(T[] entities);
+
+        Task<T> Update(T entity);
 
         Task<T> Delete(Guid id);
     }

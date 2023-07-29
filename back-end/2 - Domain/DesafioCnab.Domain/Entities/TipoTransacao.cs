@@ -11,7 +11,7 @@ public class TipoTransacao
     [Required]
     public int Id { get; set; }
 
-    public int IdNaturezaTransacao { get; set; }
+    public int NaturezaTransacaoId { get; set; }
 
     public NaturezaTransacao NaturezaTransacao { get; set; }
 

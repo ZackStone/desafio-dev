@@ -10,7 +10,7 @@ public class Transacao : BaseEntity
 
     [NotEmpty]
     [Required]
-    public int IdTipoTransacao { get; set; }
+    public int TipoTransacaoId { get; set; }
 
     public TipoTransacao TipoTransacao { get; set; }
 

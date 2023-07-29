@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\2 - Domain\DesafioCnab.Domain\DesafioCnab.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Repositories;
@@ -13,7 +14,7 @@ namespace DesafioCnab.Service.Services
 
         public BaseService(IRepository<TEntity> repository)
         {
-            this._repository = repository;
+            _repository = repository;
         }
 
         public virtual Task<List<TEntity>> GetAll() => _repository.GetAll();
@@ -26,17 +27,14 @@ namespace DesafioCnab.Service.Services
             return _repository.Get(id);
         }
 
-        public virtual async Task<TEntity> Post(TEntity obj)
-        {
+        public virtual async Task<TEntity> Insert(TEntity obj) => 
             await _repository.Insert(obj);
-            return obj;
-        }
 
-        public async Task<TEntity> Put(TEntity obj)
-        {
+        public virtual async Task<IEnumerable<TEntity>> InsertRange(IEnumerable<TEntity> entities) => 
+            await _repository.InsertRange(entities.ToArray());
+
+        public async Task<TEntity> Update(TEntity obj) => 
             await _repository.Update(obj);
-            return obj;
-        }
 
         public async Task<TEntity> Delete(Guid id)
         {

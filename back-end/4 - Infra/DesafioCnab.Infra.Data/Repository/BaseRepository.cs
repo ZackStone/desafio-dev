@@ -28,6 +28,13 @@ namespace DesafioCnab.Infra.Data.Repository
             return entity;
         }
 
+        public async Task<TEntity[]> InsertRange(TEntity[] entities)
+        {
+            _dbContext.Set<TEntity>().AddRange(entities);
+            await _dbContext.SaveChangesAsync();
+            return entities;
+        }
+
         public async Task<TEntity> Update(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
