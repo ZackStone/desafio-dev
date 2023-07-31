@@ -16,8 +16,7 @@
           </v-row>
         </v-container>
       </v-card-text>
-      <v-card-actions>        
-        <!-- <input type="file" @change="uploadFile" ref="file" :error-messages="validationErrors"> -->
+      <v-card-actions>
         <v-btn color="primary" large @click="submitFile">Enviar</v-btn>
         <v-btn color="accent" large @click="clear">Limpar</v-btn>
       </v-card-actions>
@@ -31,6 +30,16 @@
       dismissible
       prominent>
       Upload realizado com sucesso!
+    </v-alert>
+    <v-alert style="margin-top: 10px;"
+      v-model="showErrorAlert"
+      border="left"
+      type="error"
+      outlined
+      transition="scroll-y-transition"
+      dismissible
+      prominent>
+      Ocorreu um erro ao tentar processar o arquivo!
     </v-alert>
   </form>
 </template>
@@ -56,7 +65,8 @@ export default {
     model: {
       file: null
     },
-    showAlert: false
+    showAlert: false,
+    showErrorAlert: false
   }),
 
   computed: {
@@ -86,24 +96,23 @@ export default {
 
       this.$nuxt.$loading.start()
 
-      await this.enviarArquivo()
-      
-      this.clear()
-      this.$nuxt.$loading.finish()
-      this.showAlert = true
-    },
-    async enviarArquivo() {
       const formData = new FormData();
       formData.append('formFile', this.model.file);
       const headers = { 'Content-Type': 'multipart/form-data' };
 
-      const { data } = await this.$axios.post(
+      await this.$axios.post(
         '/api/ArquivoCnab/upload',
         formData,
         { headers }
-      )
+      ).then(() => {
+        this.showAlert = true
+      }).catch((error) => {
+        this.showErrorAlert = true
+      })
 
-      return data
+      this.model.file = null
+      this.$v.model.$reset()
+      this.$nuxt.$loading.finish()
     },
     getValidationErrors(field) {
       const errors = []
@@ -115,6 +124,7 @@ export default {
       this.$v.model.$reset()
       this.model.file = null
       this.showAlert = false
+      this.showErrorAlert = false
     }
   }
 }
