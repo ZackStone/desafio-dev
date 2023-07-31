@@ -16,9 +16,9 @@ public class ArquivoCnabController : ControllerBase
     {
         _fileService = fileService;
     }
-    
+
     [HttpPost("upload")]
-    public async Task<ActionResult<Transacao>> UploadFile([FromForm]IFormFile formFile)
+    public async Task<ActionResult<Transacao>> UploadFile([FromForm] IFormFile formFile)
     {
         using var stream = formFile.OpenReadStream();
         var result = await _fileService.ProcessarArquivo(stream);

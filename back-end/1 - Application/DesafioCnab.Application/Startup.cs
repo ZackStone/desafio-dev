@@ -31,8 +31,10 @@ namespace DesafioCnab.Application
             });
 
             services.AddTransient<ICnabFileService, CnabFileService>();
+            services.AddTransient<ILojaService, LojaService>();
             services.AddTransient<IService<Transacao>, BaseService<Transacao>>();
 
+            services.AddTransient<ITransacaoRepository, TransacaoRepository>();
             services.AddTransient<IRepository<Transacao>, BaseRepository<Transacao>>();
 
             services.AddCors(c =>
