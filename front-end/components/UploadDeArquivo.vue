@@ -18,10 +18,20 @@
       </v-card-text>
       <v-card-actions>        
         <!-- <input type="file" @change="uploadFile" ref="file" :error-messages="validationErrors"> -->
-        <v-btn color="primary" large @click="submitFile">Pesquisar</v-btn>
+        <v-btn color="primary" large @click="submitFile">Enviar</v-btn>
         <v-btn color="accent" large @click="clear">Limpar</v-btn>
       </v-card-actions>
     </v-card>
+    <v-alert style="margin-top: 10px;"
+      v-model="showAlert"
+      border="left"
+      type="success"
+      outlined
+      transition="scroll-y-transition"
+      dismissible
+      prominent>
+      Upload realizado com sucesso!
+    </v-alert>
   </form>
 </template>
 
@@ -45,7 +55,8 @@ export default {
     isLoaded: false,
     model: {
       file: null
-    }
+    },
+    showAlert: false
   }),
 
   computed: {
@@ -76,9 +87,10 @@ export default {
       this.$nuxt.$loading.start()
 
       await this.enviarArquivo()
-
+      
       this.clear()
       this.$nuxt.$loading.finish()
+      this.showAlert = true
     },
     async enviarArquivo() {
       const formData = new FormData();
@@ -102,6 +114,7 @@ export default {
     clear() {
       this.$v.model.$reset()
       this.model.file = null
+      this.showAlert = false
     }
   }
 }
