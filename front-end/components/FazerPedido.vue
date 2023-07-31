@@ -23,6 +23,7 @@
         <v-btn color="accent" large @click="clear">Limpar</v-btn>
       </v-card-actions>
     </v-card>
+    {{ items.transacoes }}
     <v-card v-if="showCheckout">
       <v-card-title>
         Checkout
@@ -68,7 +69,8 @@ export default {
       lojas: [],
       tamanhos: [],
       sabores: [],
-      adicionais: []
+      adicionais: [],
+      transacoes: []
     }
   }),
 
@@ -119,16 +121,15 @@ export default {
       // this.$v.$touch()
       // if (this.$v.$invalid) return
 
-      //this.$nuxt.$loading.start()
+      this.$nuxt.$loading.start()
 
       const { data } = await this.$axios.get(
-        '/api/Lojas',
-        //this.getPayload()
+        '/api/Transacoes?nomeLoja=' + this.model.loja,
       )
 
-      this.items.lojas = data;
+      this.items.transacoes = data;
 
-      //this.$nuxt.$loading.finish()
+      this.$nuxt.$loading.finish()
     },
     async submit() {
       this.$v.$touch()
