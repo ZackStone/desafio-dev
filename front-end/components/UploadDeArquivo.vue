@@ -8,7 +8,8 @@
         <v-container fluid>
           <v-row>
             <v-file-input 
-              label="File input"               
+              label="Arquivo CNAB"
+              accept=".txt"
               :error-messages="validationErrors"
               v-model="model.file"
               :clearable="true"
