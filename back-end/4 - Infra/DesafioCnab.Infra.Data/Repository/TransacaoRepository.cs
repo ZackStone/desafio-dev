@@ -2,8 +2,10 @@ using Dapper;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Repositories;
 using DesafioCnab.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesafioCnab.Infra.Data.Repository;
@@ -20,15 +22,10 @@ public class TransacaoRepository : BaseRepository<Transacao>, ITransacaoReposito
         return result;
     }
 
-    public async Task<IEnumerable<Transacao>> GetTransacoesPorLoja(string nomeLoja)
-    {
-        using var connection = GetSqlConnection();
-        connection.Open();
-        
-        var result = await connection.QueryAsync<Transacao>(
-            "SELECT * FROM Transacao WHERE NomeLoja = @nomeLoja", 
-            new { nomeLoja });
-
-        return result;
-    }
+    public async Task<List<Transacao>> GetTransacoesPorLoja(string nomeLoja) => 
+        await Task.FromResult(_dbContext.Set<Transacao>()
+            .Where(x => x.NomeLoja == nomeLoja)
+            .Include(x => x.TipoTransacao)
+            .ThenInclude(x => x.NaturezaTransacao)
+            .ToList());
 }

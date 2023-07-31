@@ -19,13 +19,13 @@ public class CnabFileService : ICnabFileService
 
     public async Task<IEnumerable<Transacao>> ProcessarArquivo(Stream stream)
     {
-        List<CnabFileLine> cnabList = new();
+        List<CnabFileLineDto> cnabList = new();
 
         using TextReader reader = new StreamReader(stream);
         var fileLine = await reader.ReadLineAsync();
         while (fileLine != null)
         {
-            cnabList.Add(new CnabFileLine(fileLine));
+            cnabList.Add(new CnabFileLineDto(fileLine));
             fileLine = await reader.ReadLineAsync();
         }
 

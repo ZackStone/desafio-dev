@@ -1,4 +1,4 @@
-using DesafioCnab.Domain.Entities;
+using DesafioCnab.Domain.DTO;
 using DesafioCnab.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,6 +17,6 @@ public class TransacoesController : ControllerBase
     }
 
     [HttpGet("")]
-    public async Task<ActionResult<Transacao[]>> GetTransacoesPorLoja(string nomeLoja) => 
+    public async Task<ActionResult<TransacoesPorLojaDto>> GetTransacoesPorLoja(string nomeLoja) => 
         new ObjectResult(await _transacoesService.GetTransacoesPorLoja(nomeLoja));
 }

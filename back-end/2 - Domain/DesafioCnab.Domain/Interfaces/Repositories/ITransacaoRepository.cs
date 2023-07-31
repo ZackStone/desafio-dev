@@ -8,5 +8,5 @@ public interface ITransacaoRepository : IRepository<Transacao>
 {
     Task<IEnumerable<string>> GetLojas();
 
-    Task<IEnumerable<Transacao>> GetTransacoesPorLoja(string nomeLoja);
+    Task<List<Transacao>> GetTransacoesPorLoja(string nomeLoja);
 }

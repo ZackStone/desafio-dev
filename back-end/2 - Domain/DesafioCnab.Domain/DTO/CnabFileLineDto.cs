@@ -4,9 +4,9 @@ using System;
 
 namespace DesafioCnab.Domain.DTO;
 
-public class CnabFileLine
+public class CnabFileLineDto
 {
-    public CnabFileLine(string str)
+    public CnabFileLineDto(string str)
     {
         Tipo = str[..1];
         Data = str[1..9];
