@@ -4,17 +4,24 @@ using System.Threading.Tasks;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Repositories;
 using DesafioCnab.Infra.Data.Context;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DesafioCnab.Infra.Data.Repository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
+        protected SqlConnection GetSqlConnection() => new SqlConnection(_configuration["ConnectionString:DesafioCnabDB"]);
+
+        protected readonly IConfiguration _configuration;
+
         protected readonly DesafioCnabContext _dbContext;
 
-        public BaseRepository(DesafioCnabContext dbContext)
+        public BaseRepository(DesafioCnabContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
+            _configuration = configuration;
         }
 
         public virtual Task<List<TEntity>> GetAll() => _dbContext.Set<TEntity>().ToListAsync();
