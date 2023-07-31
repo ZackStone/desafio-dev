@@ -8,56 +8,12 @@
         <v-container fluid>
           <v-row>
             <v-col cols="6">
-              <v-radio-group
-                v-model="model.tamanho"
-                label="Tamanho"
-                :error-messages="errorsTamanho"
+              <v-select
+                v-model="model.loja"
+                label="Loja"
+                :items="items.lojas"
               >
-                <v-radio
-                  v-for="item in items.tamanhos"
-                  :key="item.id"
-                  :value="item"
-                  :label="
-                    `${item.label} (${item.tamanhoMl}ml) - ${$n(
-                      item.preco,
-                      'currency'
-                    )}`
-                  "
-                ></v-radio>
-              </v-radio-group>
-            </v-col>
-            <v-col cols="6">
-              <v-radio-group
-                v-model="model.sabor"
-                label="Sabor"
-                :error-messages="errorsSabor"
-              >
-                <v-radio
-                  v-for="item in items.sabores"
-                  :key="item.id"
-                  :value="item"
-                  :label="item.label"
-                ></v-radio>
-              </v-radio-group>
-            </v-col>
-            <v-col cols="12">
-              <div class="text-left">
-                Adicionais
-              </div>
-              <v-item-group v-model="model.adicionais" :multiple="true">
-                <v-item
-                  v-for="item in items.adicionais"
-                  v-slot:default="{ active, toggle }"
-                  :key="item.id"
-                  :value="item"
-                >
-                  <v-checkbox
-                    :label="`${item.label} - ${$preco(item.preco, 'Grátis')}`"
-                    :input-value="active"
-                    @change="toggle"
-                  ></v-checkbox>
-                </v-item>
-              </v-item-group>
+              </v-select>
             </v-col>
           </v-row>
         </v-container>
@@ -96,8 +52,7 @@ export default {
 
   validations: {
     model: {
-      tamanho: { required },
-      sabor: { required }
+      loja: { required }
     }
   },
 
@@ -105,10 +60,12 @@ export default {
     isLoaded: false,
     showCheckout: false,
     model: {
+      loja: "",
       precoTotal: 0,
       tempoDePreparo: 0
     },
     items: {
+      lojas: [],
       tamanhos: [],
       sabores: [],
       adicionais: []
@@ -124,7 +81,7 @@ export default {
     })
 
     this.reqs = [
-      
+      this.getLojas()
     ]
 
     Promise.all(this.reqs).then((_) => {
@@ -134,6 +91,11 @@ export default {
   },
 
   methods: {
+    getLojas() {
+      return this.$repositories.lojas
+        .getAll()
+        .then((data) => (this.items.lojas = data))
+    },
     getItems(type) {
       return this.$repositories[type]
         .getAll()
@@ -163,6 +125,8 @@ export default {
         '/api/Lojas',
         //this.getPayload()
       )
+
+      this.items.lojas = data;
 
       //this.$nuxt.$loading.finish()
     },
