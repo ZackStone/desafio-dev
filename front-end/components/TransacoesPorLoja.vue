@@ -56,11 +56,9 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
-import Pedido from '~/components/Pedido.vue'
 
 export default {
   components: {
-    Pedido
   },
 
   mixins: [validationMixin],

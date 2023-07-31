@@ -1,17 +1,17 @@
 <template>
   <v-layout>
     <v-flex class="text-center">
-      <fazer-pedido />
+      <transacoes-por-loja />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import FazerPedido from '~/components/FazerPedido.vue'
+import TransacoesPorLoja from '~/components/TransacoesPorLoja.vue'
 
 export default {
   components: {
-    FazerPedido
+    TransacoesPorLoja
   }
 }
 </script>

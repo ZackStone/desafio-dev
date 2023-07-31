@@ -43,7 +43,7 @@ export default {
         {
           icon: 'mdi-home',
           title: 'Transações por loja',
-          to: '/fazer-pedido'
+          to: '/transacoes-por-loja'
         },
         {
           icon: 'mdi-cart',
