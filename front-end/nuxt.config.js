@@ -120,7 +120,7 @@ export default {
           success: colors.green.accent3
         },
         dark: {
-          primary: colors.purple.darken2,
+          primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
