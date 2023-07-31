@@ -17,7 +17,10 @@
               </v-select>
             </v-col>
             <v-col cols="6">
-              Saldo: {{ $n(saldo,'currency') }}
+              Saldo: 
+              <v-chip class="ma-2" :color="saldo < 0 ? 'red' : 'primary'">
+                {{ $n(saldo,'currency') }}
+              </v-chip>
             </v-col>
           </v-row>
         </v-container>
