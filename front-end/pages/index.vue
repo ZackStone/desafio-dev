@@ -11,9 +11,6 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/fazer-pedido">
-            Realizar Pedido
-          </v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

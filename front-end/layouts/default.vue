@@ -42,13 +42,13 @@ export default {
       items: [
         {
           icon: 'mdi-home',
-          title: 'Página Inicial',
-          to: '/'
+          title: 'Transações por loja',
+          to: '/fazer-pedido'
         },
         {
           icon: 'mdi-cart',
-          title: 'Realizar Pedido',
-          to: '/fazer-pedido'
+          title: 'Upload de arquivo',
+          to: '/'
         }
       ],
       title: 'Desafio CNAB'

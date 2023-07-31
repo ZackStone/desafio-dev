@@ -1,8 +1,8 @@
 <template>
   <form v-show="isLoaded">
-    <v-card v-show="!showCheckout">
+    <v-card>
       <v-card-title>
-        Realizar Pedido
+        Pesquisar transações por loja
       </v-card-title>
       <v-card-text>
         <v-container fluid>
@@ -12,29 +12,43 @@
                 v-model="model.loja"
                 label="Loja"
                 :items="items.lojas"
+                :error-messages="validationErrorsLoja"
               >
               </v-select>
+            </v-col>
+            <v-col cols="6">
+              Saldo: {{ $n(saldo,'currency') }}
             </v-col>
           </v-row>
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" large @click="fazerCheckout">Checkout</v-btn>
+        <v-btn color="primary" large @click="fazerCheckout">Pesquisar</v-btn>
         <v-btn color="accent" large @click="clear">Limpar</v-btn>
       </v-card-actions>
-    </v-card>
-    {{ items.transacoes }}
-    <v-card v-if="showCheckout">
-      <v-card-title>
-        Checkout
-      </v-card-title>
-      <v-card-text>
-        <pedido v-model="model" />
-      </v-card-text>
-      <v-card-actions>
-        <v-btn color="primary" large @click="submit">Finalizar Pedido</v-btn>
-        <v-btn color="accent" large @click="showCheckout = false">Voltar</v-btn>
-      </v-card-actions>
+      <v-simple-table>
+        <thead>
+          <tr>
+            <th>Data/Hora</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>CPF</th>
+            <th>Cartão</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in transacoes"
+            :key="item.id"
+          >
+            <td>{{ $d(new Date(item.dataHora), 'short') }}</td>
+            <td>{{ item.tipoTransacao.descricao }}</td>
+            <td>{{ `(${item.tipoTransacao.naturezaTransacao.sinal}) ${$n(item.valor,'currency')}` }}</td>
+            <td>{{ item.cpf }}</td>
+            <td>{{ item.cartao }}</td>
+          </tr>
+        </tbody>
+      </v-simple-table>
     </v-card>
   </form>
 </template>
@@ -61,20 +75,19 @@ export default {
     isLoaded: false,
     showCheckout: false,
     model: {
-      loja: "",
-      precoTotal: 0,
-      tempoDePreparo: 0
+      loja: ""
     },
     items: {
-      lojas: [],
-      tamanhos: [],
-      sabores: [],
-      adicionais: [],
-      transacoes: []
-    }
+      lojas: []
+    },
+    transacoes: [],
+    saldo: 0
   }),
 
   computed: {
+    validationErrorsLoja() {
+      return this.getValidationErrors('loja')
+    }
   },
 
   beforeMount() {
@@ -93,33 +106,20 @@ export default {
   },
 
   methods: {
-    getLojas() {
-      return this.$repositories.lojas
-        .getAll()
-        .then((data) => (this.items.lojas = data))
-    },
-    getItems(type) {
-      return this.$repositories[type]
-        .getAll()
-        .then((data) => (this.items[type] = data))
-    },
-    errorsRadioGroup(field) {
+    getValidationErrors(field) {
       const errors = []
       if (!this.$v.model[field].$dirty) return errors
       !this.$v.model[field].required && errors.push('Campo obrigatório')
       return errors
     },
-    getPayload() {
-      return {
-        tamanhoId: this.model.tamanho.id,
-        saborId: this.model.sabor.id,
-        adicionais:
-          this.model.adicionais && this.model.adicionais.map((a) => a.id)
-      }
+    getLojas() {
+      return this.$repositories.lojas
+        .getAll()
+        .then((data) => (this.items.lojas = data))
     },
     async fazerCheckout() {
-      // this.$v.$touch()
-      // if (this.$v.$invalid) return
+      this.$v.$touch()
+      if (this.$v.$invalid) return
 
       this.$nuxt.$loading.start()
 
@@ -127,25 +127,16 @@ export default {
         '/api/Transacoes?nomeLoja=' + this.model.loja,
       )
 
-      this.items.transacoes = data;
+      this.transacoes = data.transacoes
+      this.saldo = data.saldo
 
       this.$nuxt.$loading.finish()
-    },
-    async submit() {
-      this.$v.$touch()
-      if (this.$v.$invalid) return
-
-      this.$nuxt.$loading.start()
-
-      const pedido = await this.$repositories.pedidos.post(this.getPayload())
-
-      this.$nuxt.$loading.finish()
-
-      this.$router.push(`/pedidos/${pedido.id}`)
     },
     clear() {
       this.$v.model.$reset()
       this.model = {}
+      this.transacoes = []
+      this.saldo = 0
     }
   }
 }

@@ -62,6 +62,25 @@ export default {
         defaultLocale: 'pt-BR',
         vueI18n: {
           fallbackLocale: 'pt-BR',
+          dateTimeFormats:{
+            'pt-BR': {
+              short: {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+              },
+              long: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long',
+                hour: 'numeric',
+                minute: 'numeric'
+              }
+            }
+          },
           numberFormats: {
             'pt-BR': {
               currency: {
