@@ -22,13 +22,13 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <v-footer :fixed="fixed" app>
-      <span>Açaí Legal &copy; {{ new Date().getFullYear() }}</span>
+      <span>Desafio CNAB &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -51,7 +51,7 @@ export default {
           to: '/fazer-pedido'
         }
       ],
-      title: 'Açaí Legal'
+      title: 'Desafio CNAB'
     }
   }
 }

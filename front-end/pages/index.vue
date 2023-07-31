@@ -1,10 +1,10 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <h1 class="text-center">Açaí Legal</h1>
+      <h1 class="text-center">Desafio CNAB</h1>
       <v-card>
         <v-card-title class="headline">
-          Bem-vindo ao Açaí Legal
+          Bem-vindo!
         </v-card-title>
         <v-card-text>
           ...

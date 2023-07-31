@@ -1,4 +1,4 @@
-# acai-legal
+# desafio-cnab
 
 > My legendary Nuxt.js project
 
