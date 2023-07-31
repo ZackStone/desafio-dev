@@ -43,12 +43,12 @@ export default {
         {
           icon: 'mdi-home',
           title: 'Transações por loja',
-          to: '/transacoes-por-loja'
+          to: '/'
         },
         {
           icon: 'mdi-cart',
           title: 'Upload de arquivo',
-          to: '/'
+          to: '/upload-de-arquivo'
         }
       ],
       title: 'Desafio CNAB'
