@@ -1,11 +1,11 @@
-using DesafioCnab.Domain.DTO;
+using DesafioCnab.Domain.Dto;
 using DesafioCnab.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DesafioCnab.Domain.Interfaces.Services;
 
-public interface ITransacoesService : IService<Transacao>
+public interface ITransacaoService : IService<Transacao>
 {
     Task<TransacoesPorLojaDto> GetTransacoesPorLoja(string nomeLoja);
 

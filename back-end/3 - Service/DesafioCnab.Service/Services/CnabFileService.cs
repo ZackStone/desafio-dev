@@ -1,4 +1,4 @@
-using DesafioCnab.Domain.DTO;
+using DesafioCnab.Domain.Dto;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Services;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace DesafioCnab.Service.Services;
 
 public class CnabFileService : ICnabFileService
 {
-    private readonly ITransacoesService _transacaoService;
+    private readonly ITransacaoService _transacaoService;
 
-    public CnabFileService(ITransacoesService transacaoService)
+    public CnabFileService(ITransacaoService transacaoService)
     {
         _transacaoService = transacaoService;
     }

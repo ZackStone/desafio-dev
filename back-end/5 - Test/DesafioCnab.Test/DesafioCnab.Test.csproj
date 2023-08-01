@@ -26,10 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\1 - Application\DesafioCnab.Application\DesafioCnab.Application.csproj" />
-    <ProjectReference Include="..\..\2 - Domain\DesafioCnab.Domain\DesafioCnab.Domain.csproj" />
     <ProjectReference Include="..\..\3 - Service\DesafioCnab.Service\DesafioCnab.Service.csproj" />
-    <ProjectReference Include="..\..\4 - Infra\DesafioCnab.Infra.Data\DesafioCnab.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,20 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DesafioCnab.Domain.Interfaces.Services
+namespace DesafioCnab.Domain.Interfaces.Services;
+
+public interface IService<T> where T : BaseEntity
 {
-    public interface IService<T> where T : BaseEntity
-    {
-        Task<T> Insert(T entity);
+    Task<T> Insert(T entity);
 
-        Task<IEnumerable<T>> InsertRange(IEnumerable<T> entities);
+    Task<IEnumerable<T>> InsertRange(IEnumerable<T> entities);
 
-        Task<T> Update(T entity);
+    Task<T> Update(T entity);
 
-        Task<T> Delete(Guid id);
+    Task<T> Delete(Guid id);
 
-        Task<T> Get(Guid id);
+    Task<T> Get(Guid id);
 
-        Task<List<T>> GetAll();
-    }
+    Task<List<T>> GetAll();
 }

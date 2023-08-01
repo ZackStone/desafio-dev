@@ -8,6 +8,7 @@ public class NaturezaTransacao
     public NaturezaTransacao() { }
 
     [NotEmpty]
+    [NotDefault]
     [Required]
     public int Id { get; set; }
 

@@ -6,7 +6,6 @@ public class CnabFileServiceTest
 {
     private readonly AutoMocker _mocker = new();
     private readonly Faker _faker = new("pt_BR");
-    private readonly CnabFileLineDtoFaker _cnabFileLineFaker = new();
 
     private readonly ICnabFileService _service;
 

@@ -1,4 +1,4 @@
-using DesafioCnab.Domain.DTO;
+using DesafioCnab.Domain.Dto;
 using DesafioCnab.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +13,9 @@ namespace DesafioCnab.Application.Controllers;
 public class TransacoesController : ControllerBase
 {
     protected readonly ILogger<TransacoesController> _logger;
-    protected readonly ITransacoesService _transacoesService;
+    protected readonly ITransacaoService _transacoesService;
 
-    public TransacoesController(ILogger<TransacoesController> logger, ITransacoesService transacoesService)
+    public TransacoesController(ILogger<TransacoesController> logger, ITransacaoService transacoesService)
     {
         _transacoesService = transacoesService;
         _logger = logger;

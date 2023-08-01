@@ -6,7 +6,7 @@ public class TransacoesServiceTest
     private readonly Faker _faker = new("pt_BR");
     private readonly TransacaoFaker _transacaoFaker = new();
 
-    private readonly ITransacoesService _service;
+    private readonly ITransacaoService _service;
 
     private readonly Mock<ITransacaoRepository> _transacaoRepositoryMock;
 
@@ -14,7 +14,7 @@ public class TransacoesServiceTest
     {
         _transacaoRepositoryMock = _mocker.GetMock<ITransacaoRepository>();
 
-        _service = _mocker.CreateInstance<TransacoesService>();
+        _service = _mocker.CreateInstance<TransacaoService>();
     }
 
     [Theory]

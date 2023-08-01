@@ -3,7 +3,7 @@ using FluentValidation;
 using System;
 using System.Globalization;
 
-namespace DesafioCnab.Domain.DTO;
+namespace DesafioCnab.Domain.Dto;
 
 public class CnabFileLineDto
 {

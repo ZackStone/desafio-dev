@@ -31,7 +31,7 @@ public class Startup
 
         services.AddScoped<ICnabFileService, CnabFileService>();
         services.AddScoped<ILojaService, LojaService>();
-        services.AddScoped<ITransacoesService, TransacoesService>();
+        services.AddScoped<ITransacaoService, TransacaoService>();
 
         services.AddScoped<ITransacaoRepository, TransacaoRepository>();
 

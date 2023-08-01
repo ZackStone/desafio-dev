@@ -1,6 +1,3 @@
-using Bogus;
-using DesafioCnab.Domain.Entities;
-
 namespace DesafioCnab.Test.Fakers;
 
 public class TipoTransacaoFaker : Faker<TipoTransacao>

@@ -1,4 +1,4 @@
-using DesafioCnab.Domain.DTO;
+using DesafioCnab.Domain.Dto;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Repositories;
 using DesafioCnab.Domain.Interfaces.Services;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DesafioCnab.Service.Services;
 
-public class TransacoesService : BaseService<Transacao>, ITransacoesService
+public class TransacaoService : BaseService<Transacao>, ITransacaoService
 {
     private readonly ITransacaoRepository _transacaoRepository;
 
-    public TransacoesService(ITransacaoRepository transacaoRepository) : base(transacaoRepository)
+    public TransacaoService(ITransacaoRepository transacaoRepository) : base(transacaoRepository)
     {
         _transacaoRepository = transacaoRepository;
     }

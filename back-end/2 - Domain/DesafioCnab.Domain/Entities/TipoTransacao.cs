@@ -8,6 +8,7 @@ public class TipoTransacao
     public TipoTransacao() { }
 
     [NotEmpty]
+    [NotDefault]
     [Required]
     public int Id { get; set; }
 

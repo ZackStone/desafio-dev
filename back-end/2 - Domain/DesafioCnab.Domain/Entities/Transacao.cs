@@ -9,6 +9,7 @@ public class Transacao : BaseEntity
     public Transacao() { }
 
     [NotEmpty]
+    [NotDefault]
     [Required]
     public int TipoTransacaoId { get; set; }
 

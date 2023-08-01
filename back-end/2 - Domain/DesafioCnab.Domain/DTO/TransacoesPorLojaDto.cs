@@ -1,7 +1,7 @@
 using DesafioCnab.Domain.Entities;
 using System.Collections.Generic;
 
-namespace DesafioCnab.Domain.DTO;
+namespace DesafioCnab.Domain.Dto;
 
 public class TransacoesPorLojaDto
 {
