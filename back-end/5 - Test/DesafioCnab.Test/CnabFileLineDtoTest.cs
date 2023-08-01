@@ -6,10 +6,10 @@ using FluentAssertions;
 
 namespace DesafioCnab.Test;
 
-public class UnitTest1
+public class CnabFileLineDtoTest
 {
     [Fact]
-    public void Test1()
+    public void TestarParseDeStringParaObjeto()
     {
         Faker faker = new("pt_BR");
 
@@ -31,7 +31,7 @@ public class UnitTest1
 
             var strLine = $"{strTipo}{strData}{strValor}{strCpf}{strCartao}{strHora}{strDono}{strLoja}";
 
-            var objLine = new CnabFileLine(strLine);
+            var objLine = new CnabFileLineDto(strLine);
 
             Transacao tran = objLine.InstanciarEntidadeTransacao();
 

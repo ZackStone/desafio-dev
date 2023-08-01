@@ -22,7 +22,7 @@ public class ArquivoCnabController : ControllerBase
         _fileService = fileService;
     }
 
-    [HttpPost("upload")]
+    [HttpPost("")]
     public async Task<ActionResult<Transacao>> UploadFile([FromForm] IFormFile formFile)
     {
         try

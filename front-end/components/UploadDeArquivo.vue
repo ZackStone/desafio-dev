@@ -102,7 +102,7 @@ export default {
       const headers = { 'Content-Type': 'multipart/form-data' };
 
       await this.$axios.post(
-        '/api/ArquivoCnab/upload',
+        '/api/ArquivoCnab',
         formData,
         { headers }
       ).then(() => {
