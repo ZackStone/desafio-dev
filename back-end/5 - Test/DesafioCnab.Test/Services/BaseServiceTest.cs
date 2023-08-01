@@ -64,6 +64,20 @@ public class BaseServiceTest
     }
 
     [Fact]
+    public void GetIdInvalidoTest()
+    {
+        // Arrange
+        // Act
+        // Assert
+
+        Func<Task> act = async () => await _service.Get(Guid.Empty);
+
+        act.Should()
+            .ThrowAsync<ArgumentException>()
+            .Where(e => e.Message == "O arquivo não está formatado corretamente.");
+    }
+
+    [Fact]
     public async Task InsertTest()
     {
         // Arrange
@@ -128,6 +142,20 @@ public class BaseServiceTest
         // Assert
 
         result.Should().BeEquivalentTo(obj);
+    }
+
+    [Fact]
+    public void DeleteIdInvalidoTest()
+    {
+        // Arrange
+        // Act
+        // Assert
+
+        Func<Task> act = async () => await _service.Delete(Guid.Empty);
+
+        act.Should()
+            .ThrowAsync<ArgumentException>()
+            .Where(e => e.Message == "Campo 'Id' não pode ser vazio.");
     }
 
     [Fact]

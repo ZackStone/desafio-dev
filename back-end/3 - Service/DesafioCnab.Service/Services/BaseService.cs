@@ -39,7 +39,7 @@ public class BaseService<TEntity> : IService<TEntity> where TEntity : BaseEntity
     public async Task<TEntity> Delete(Guid id)
     {
         if (id == Guid.Empty)
-            throw new ArgumentException("Campo 'Id' é obrigatório.");
+            throw new ArgumentException("Campo 'Id' não pode ser vazio.");
 
         var obj = await _repository.Delete(id);
         return obj;
