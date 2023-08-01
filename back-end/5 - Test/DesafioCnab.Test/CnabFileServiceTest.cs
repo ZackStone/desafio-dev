@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DesafioCnab.Test;
 
 public class CnabFileServiceTest
@@ -14,8 +16,22 @@ public class CnabFileServiceTest
 
     [Theory]
     [Repeat(10)]
-    public void ProcessarArquivoTest()
+    public async Task ProcessarArquivoTest()
     {
-        //_service!.ProcessarArquivo(null);
+        // Arrange
+
+        var line = CnabFileLineDtoFaker.GetLine(new CnabFileLineDtoFaker().Generate());
+
+        using var test_Stream = new MemoryStream(Encoding.UTF8.GetBytes(line));
+
+
+        // Act
+
+        var transacoes = await _service.ProcessarArquivo(test_Stream);
+
+
+        // Assert
+
+        transacoes.Should().NotBeNull();
     }
 }
