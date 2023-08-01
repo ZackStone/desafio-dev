@@ -1,7 +1,7 @@
 using DesafioCnab.Domain.Entities;
-using System.Globalization;
-using System;
 using FluentValidation;
+using System;
+using System.Globalization;
 
 namespace DesafioCnab.Domain.DTO;
 
@@ -47,7 +47,7 @@ public class CnabFileLineDto
                 Cartao = Cartao,
                 DonoLoja = DonoLoja.Trim(),
                 NomeLoja = NomeLoja.Trim(),
-                Valor = decimal.Parse(Valor, CultureInfo.InvariantCulture) / 100m,
+                Valor = int.Parse(Valor, CultureInfo.InvariantCulture) / 100m,
                 DataHora = DateTime.ParseExact(Data + Hora, "yyyyMMddHHmmss", CultureInfo.InvariantCulture),
                 TipoTransacaoId = Convert.ToInt32(Tipo)
             };
