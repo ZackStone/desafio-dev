@@ -39,3 +39,6 @@
 
 ## Problemas com compatibilidade de final de arquivo entre Win/Linux
 - Executar `git config --global core.autocrlf true`
+
+## Cobertura de testes do back-end
+![Cobertura de testes do back-end](./back-end/coverage.png)
