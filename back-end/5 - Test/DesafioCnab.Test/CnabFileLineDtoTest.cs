@@ -1,51 +1,42 @@
-using Bogus;
-using Bogus.Extensions.Brazil;
-using DesafioCnab.Domain.DTO;
-using DesafioCnab.Domain.Entities;
-using FluentAssertions;
+using System.Globalization;
 
 namespace DesafioCnab.Test;
 
 public class CnabFileLineDtoTest
 {
-    [Fact]
-    public void TestarParseDeStringParaObjeto()
+    private readonly CnabFileLineDtoFaker _cnabFileLineFaker = new();
+
+    [Theory]
+    [Repeat(99)]
+    public void InstanciarEntidadeTransacaoTest()
     {
-        Faker faker = new("pt_BR");
+        // Arrange
 
-        foreach (var _ in new int[99])
-        {
-            DateTime dataHora = DateTime.Parse(faker.Date.Recent().ToString("yyyy-MM-dd HH:mm:ss"));
+        CnabFileLineDto dto = _cnabFileLineFaker.Generate();
+        string strLine = CnabFileLineDtoFaker.GetLine(dto);
+        CnabFileLineDto objLine = new(strLine);
 
-            int valorInt = faker.Random.Int(1, 999999999);
-            decimal valorDecimal = new decimal(valorInt) / 100m;
 
-            string strTipo = faker.Random.Int(1, 9).ToString();
-            string strData = dataHora.ToString("yyyyMMdd");
-            string strValor = valorInt.ToString().PadLeft(10, '0');
-            string strCpf = faker.Person.Cpf(false);
-            string strCartao = $"{1234}****{5678}";
-            string strHora = dataHora.ToString("HHmmss");
-            string strDono = faker.Name.FirstName().PadRight(14, ' ')[..14];
-            string strLoja = faker.Company.CompanyName().PadRight(19, ' ')[..19];
+        // Act
 
-            var strLine = $"{strTipo}{strData}{strValor}{strCpf}{strCartao}{strHora}{strDono}{strLoja}";
+        Transacao transacao = objLine.InstanciarEntidadeTransacao();
 
-            var objLine = new CnabFileLineDto(strLine);
 
-            Transacao tran = objLine.InstanciarEntidadeTransacao();
+        // Assert
 
-            tran.Should().NotBeNull();
+        transacao.Should().NotBeNull();
 
-            tran.DataHora.Should().Be(dataHora);
-            tran.Valor.Should().Be(valorDecimal);
+        transacao.Cpf.Should().Be(dto.Cpf);
+        transacao.Cartao.Should().Be(dto.Cartao);
+        transacao.DonoLoja.Should().Be(dto.DonoLoja.Trim());
+        transacao.NomeLoja.Should().Be(dto.NomeLoja.Trim());
 
-            tran.TipoTransacaoId.ToString().Should().Be(strTipo);
+        transacao.TipoTransacaoId.ToString().Should().Be(dto.Tipo);
+        
+        var valor = decimal.Parse(dto.Valor, CultureInfo.InvariantCulture) / 100m;
+        var dataHora = DateTime.ParseExact(dto.Data + dto.Hora, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-            tran.Cpf.Should().Be(strCpf);
-            tran.Cartao.Should().Be(strCartao);
-            tran.DonoLoja.Should().Be(strDono.Trim());
-            tran.NomeLoja.Should().Be(strLoja.Trim());
-        }
+        transacao.DataHora.Should().Be(dataHora);
+        transacao.Valor.Should().Be(valor);
     }
 }

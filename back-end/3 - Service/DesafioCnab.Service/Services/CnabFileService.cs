@@ -10,9 +10,9 @@ namespace DesafioCnab.Service.Services;
 
 public class CnabFileService : ICnabFileService
 {
-    private readonly IService<Transacao> _transacaoService;
+    private readonly ITransacoesService _transacaoService;
 
-    public CnabFileService(IService<Transacao> transacaoService)
+    public CnabFileService(ITransacoesService transacaoService)
     {
         _transacaoService = transacaoService;
     }

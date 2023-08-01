@@ -1,9 +1,13 @@
 using DesafioCnab.Domain.DTO;
+using DesafioCnab.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DesafioCnab.Domain.Interfaces.Services;
 
-public interface ITransacoesService
+public interface ITransacoesService : IService<Transacao>
 {
     Task<TransacoesPorLojaDto> GetTransacoesPorLoja(string nomeLoja);
+
+    decimal CalcularSaldo(IEnumerable<Transacao> transacoes);
 }

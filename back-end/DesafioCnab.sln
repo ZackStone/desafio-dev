@@ -23,9 +23,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Test", "5 - Test", "{6C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Playground", "6 - Playground", "{127C7F51-386A-4447-8541-9565EDDABDA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioCnab.Playground", "6 - Playground\DesafioCnab.Playground\DesafioCnab.Playground.csproj", "{F7501998-8E0F-4424-B399-427FA885AB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioCnab.Playground", "6 - Playground\DesafioCnab.Playground\DesafioCnab.Playground.csproj", "{F7501998-8E0F-4424-B399-427FA885AB43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioCnab.Test", "5 - Test\DesafioCnab.Test\DesafioCnab.Test.csproj", "{FB5BFF7F-E6D3-452C-8FC6-87060E8EE89F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioCnab.Test", "5 - Test\DesafioCnab.Test\DesafioCnab.Test.csproj", "{FB5BFF7F-E6D3-452C-8FC6-87060E8EE89F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE589FD4-DA05-4FDD-8BDB-E2E616984440}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

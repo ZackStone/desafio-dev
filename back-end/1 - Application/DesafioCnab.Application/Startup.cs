@@ -1,5 +1,4 @@
-﻿using DesafioCnab.Domain.Entities;
-using DesafioCnab.Domain.Interfaces.Repositories;
+﻿using DesafioCnab.Domain.Interfaces.Repositories;
 using DesafioCnab.Domain.Interfaces.Services;
 using DesafioCnab.Infra.Data.Context;
 using DesafioCnab.Infra.Data.Repository;
@@ -30,13 +29,11 @@ public class Startup
             opts.UseSqlServer(Configuration["ConnectionString:DesafioCnabDB"]);
         });
 
-        services.AddTransient<ICnabFileService, CnabFileService>();
-        services.AddTransient<ILojaService, LojaService>();
-        services.AddTransient<ITransacoesService, TransacoesService>();
-        services.AddTransient<IService<Transacao>, BaseService<Transacao>>();
+        services.AddScoped<ICnabFileService, CnabFileService>();
+        services.AddScoped<ILojaService, LojaService>();
+        services.AddScoped<ITransacoesService, TransacoesService>();
 
-        services.AddTransient<ITransacaoRepository, TransacaoRepository>();
-        services.AddTransient<IRepository<Transacao>, BaseRepository<Transacao>>();
+        services.AddScoped<ITransacaoRepository, TransacaoRepository>();
 
         services.AddCors(c =>
         {
