@@ -5,6 +5,7 @@ namespace DesafioCnab.Test;
 public class CnabFileServiceTest
 {
     private readonly AutoMocker _mocker = new();
+    private readonly Faker _faker = new("pt_BR");
     private readonly CnabFileLineDtoFaker _cnabFileLineFaker = new();
 
     private readonly ICnabFileService _service;
@@ -20,7 +21,13 @@ public class CnabFileServiceTest
     {
         // Arrange
 
-        var line = CnabFileLineDtoFaker.GetLine(new CnabFileLineDtoFaker().Generate());
+        var line = "";
+
+        for (int i = 0; i < _faker.Random.Int(0, 999); i++)
+        {
+            line += CnabFileLineDtoFaker.GetLine(new CnabFileLineDtoFaker().Generate());
+            line += "\n";
+        }
 
         using var test_Stream = new MemoryStream(Encoding.UTF8.GetBytes(line));
 
