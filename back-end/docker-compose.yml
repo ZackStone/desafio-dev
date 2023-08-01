@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  acailegal-api:
-    image: acailegaldesafiocnab-api
+  desafiocnab-api:
+    image: desafiocnab-api
     build:
       context: .
     ports:
@@ -12,7 +12,7 @@ services:
     depends_on:
       - "desafiocnab-sqlserver"    
 
-  acailegal-sqlserver:
+  desafiocnab-sqlserver:
     image: "mcr.microsoft.com/mssql/server"
     environment:
       SA_PASSWORD: "SQLServer@123"

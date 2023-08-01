@@ -1,3 +1,9 @@
+CREATE DATABASE DesafioCnab;
+GO
+
+USE DesafioCnab;
+GO
+
 /*
 DROP TABLE Transacao;
 DROP TABLE TipoTransacao;
@@ -49,13 +55,10 @@ CREATE TABLE Transacao
 );
 GO
 
-
 INSERT INTO NaturezaTransacao VALUES
 (1, 'Entrada', '+'),
 (2, 'Saída', '-')
 GO
-
-SELECT * FROM NaturezaTransacao 
 
 INSERT INTO TipoTransacao VALUES 
 (1, 'Débito', 1),
@@ -68,5 +71,3 @@ INSERT INTO TipoTransacao VALUES
 (8, 'Recebimento DOC', 1),
 (9, 'Aluguel', 2)
 GO
-
-SELECT * FROM TipoTransacao

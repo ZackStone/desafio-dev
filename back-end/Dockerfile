@@ -1,5 +1,5 @@
 # Imagem para o build usando o sdk
-FROM microsoft/dotnet:2.1-sdk-alpine AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
 WORKDIR /app
 
 # Seta caminho do .csproj
@@ -11,9 +11,14 @@ COPY . ./
 RUN dotnet publish "${CSPROJ}" -c Release -o /app/out
 
 # Imagem para a execução usando o runtime
-FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as runtime
 WORKDIR /app
 
+RUN apk add --no-cache icu-libs tzdata
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
+ENV ASPNETCORE_URLS=http://+:80
+
 # Copia os arquivos do build e inicia a aplicação
-COPY --from=build-env /app/out .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "DesafioCnab.Application.dll"]

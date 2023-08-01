@@ -63,13 +63,14 @@ public class Startup
         if (env.EnvironmentName == "Development")
         {
             app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI();
         }
         else
         {
-            app.UseHsts();
+            //app.UseHsts();
         }
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseCors(options =>
         {
