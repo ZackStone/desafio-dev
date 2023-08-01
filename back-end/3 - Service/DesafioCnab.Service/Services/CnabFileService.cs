@@ -29,10 +29,8 @@ public class CnabFileService : ICnabFileService
             fileLine = await reader.ReadLineAsync();
         }
 
-        var objList = cnabList.Select(x => x.InstanciarEntidadeTransacao());
+        var objList = cnabList.Select(x => x.InstanciarEntidadeTransacao()).ToList();
 
-        objList = await _transacaoService.InsertRange(objList);
-
-        return objList;
+        return await _transacaoService.InsertRange(objList);
     }
 }
