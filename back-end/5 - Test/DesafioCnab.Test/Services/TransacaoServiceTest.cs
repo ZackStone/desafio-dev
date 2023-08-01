@@ -1,6 +1,6 @@
-namespace DesafioCnab.Test;
+namespace DesafioCnab.Test.Services;
 
-public class TransacoesServiceTest
+public class TransacaoServiceTest
 {
     private readonly AutoMocker _mocker = new();
     private readonly Faker _faker = new("pt_BR");
@@ -10,7 +10,7 @@ public class TransacoesServiceTest
 
     private readonly Mock<ITransacaoRepository> _transacaoRepositoryMock;
 
-    public TransacoesServiceTest()
+    public TransacaoServiceTest()
     {
         _transacaoRepositoryMock = _mocker.GetMock<ITransacaoRepository>();
 

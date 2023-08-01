@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DesafioCnab.Domain.Entities.Validators;
 
 [AttributeUsage(
     AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
     AllowMultiple = false)]
+[ExcludeFromCodeCoverage]
 public class NotEmptyAttribute : ValidationAttribute
 {
     public const string DefaultErrorMessage = "The {0} field must not be empty";

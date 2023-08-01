@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DesafioCnab.Domain.Entities;
 using DesafioCnab.Domain.Interfaces.Repositories;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace DesafioCnab.Infra.Data.Repository;
 
+[ExcludeFromCodeCoverage]
 public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 {
     protected SqlConnection GetSqlConnection() => new(_configuration["ConnectionString:DesafioCnabDB"]);

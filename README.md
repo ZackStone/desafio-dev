@@ -31,5 +31,11 @@
   - `npm i -d`
   - `npm run dev`
 
+## Cobertura de testes do back-end
+- Instalar o pacote a seguir: `dotnet tool install -g dotnet-reportgenerator-globaltool`
+- Instalar a seguinte extesão no VisualStudio: `Run Coverlet Report`
+- Rodar: acessar pelo menu "Tools" > "Run code coverage"
+- Passo a passo de como rodar manualmente (sem VisualStudio, em Ubuntu, por exemplo): https://renatogroffe.medium.com/net-5-cobertura-de-testes-com-coverlet-7cbec2f052d9
+
 ## Problemas com compatibilidade de final de arquivo entre Win/Linux
 - Executar `git config --global core.autocrlf true`

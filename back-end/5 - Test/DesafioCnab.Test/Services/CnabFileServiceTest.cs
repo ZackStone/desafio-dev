@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DesafioCnab.Test;
+namespace DesafioCnab.Test.Services;
 
 public class CnabFileServiceTest
 {

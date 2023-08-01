@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace DesafioCnab.Test;
+namespace DesafioCnab.Test.Domain.Dto;
 
 public class CnabFileLineDtoTest
 {
@@ -32,7 +32,7 @@ public class CnabFileLineDtoTest
         transacao.NomeLoja.Should().Be(dto.NomeLoja.Trim());
 
         transacao.TipoTransacaoId.ToString().Should().Be(dto.Tipo);
-        
+
         var valor = decimal.Parse(dto.Valor, CultureInfo.InvariantCulture) / 100m;
         var dataHora = DateTime.ParseExact(dto.Data + dto.Hora, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 

@@ -1,8 +1,10 @@
 using DesafioCnab.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DesafioCnab.Infra.Data.Context;
 
+[ExcludeFromCodeCoverage]
 public class DesafioCnabContext : DbContext
 {
     public DbSet<NaturezaTransacao> NaturezaTransacao { get; set; }

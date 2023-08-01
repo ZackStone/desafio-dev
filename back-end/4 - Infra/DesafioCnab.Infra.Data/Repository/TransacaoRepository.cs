@@ -5,11 +5,13 @@ using DesafioCnab.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesafioCnab.Infra.Data.Repository;
 
+[ExcludeFromCodeCoverage]
 public class TransacaoRepository : BaseRepository<Transacao>, ITransacaoRepository
 {
     public TransacaoRepository(DesafioCnabContext dbContext, IConfiguration configuration) : base(dbContext, configuration) { }
